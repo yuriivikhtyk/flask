@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+      <form method="POST" action="{{url_for('add_cafe')}}" novalidate>
+        {{ form.csrf_token }}
+        {{ form.cafe.label }} <br> {{ form.cafe(size=80) }}<br>
+        {% for err in form.cafe.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.location.label }} <br> {{ form.location(size=80) }}<br>
+        {% for err in form.location.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.open_time.label }} <br> {{ form.open_time(size=80) }}<br>
+        {% for err in form.open_time.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.close_time.label }} <br> {{ form.close_time(size=80) }}<br>
+        {% for err in form.close_time.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.coffee.label }} <br> {{ form.coffee(width=80) }}<br>
+        {% for err in form.coffee.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.wifi.label }} <br> {{ form.wifi() }}<br>
+        {% for err in form.wifi.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        {{ form.power.label }} <br> {{ form.power() }}<br>
+        {% for err in form.power.errors %}
+        <span  style="color:red">{{ err }}</span><br>
+        {% endfor %}
+        <br>{{ form.submit }}<br>
+      </form>
+
+	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
